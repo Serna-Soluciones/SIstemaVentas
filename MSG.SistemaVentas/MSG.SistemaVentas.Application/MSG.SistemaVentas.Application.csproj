@@ -10,4 +10,8 @@
     <Folder Include="Catalogos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MSG.SistemaVentas.Domain\MSG.SistemaVentas.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

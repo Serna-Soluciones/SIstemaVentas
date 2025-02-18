@@ -10,4 +10,8 @@
     <Folder Include="Persistence\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MSG.SistemaVentas.Application\MSG.SistemaVentas.Application.csproj" />
+  </ItemGroup>
+
 </Project>
