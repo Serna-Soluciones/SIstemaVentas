@@ -1,5 +1,5 @@
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080

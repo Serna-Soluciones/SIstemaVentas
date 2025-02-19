@@ -4,3 +4,5 @@ El archivo docker-compose.yml instala MongoDB, Mongo Express, PostgreSQL y PgAdm
 
 La solución en .NET está hecha con NET Core 8, maneja una estructura de Infrastructure-Application-Domain-API.
 
+Se actualizó "docker-compose.yml" y se agregó "docker-compose.override.yml" para agregar al "compose" la API generada por la solución. También se actualizó la configuración en appsettings.json de la API para agregar la cadena de conexión.
+

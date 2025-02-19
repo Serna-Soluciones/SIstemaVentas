@@ -66,6 +66,8 @@ services:
         BUILD_CONFIGURATION: Release
     ports:
       - "8080:8080"
+    networks:
+      - backend_network
     depends_on:
       - postgres
       - mongo

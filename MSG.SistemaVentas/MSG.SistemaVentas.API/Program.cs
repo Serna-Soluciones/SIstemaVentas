@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using MSG.SistemaVentas.Infrastructure.Persistence;
+
 namespace MSG.SistemaVentas.API
 {
     public class Program
@@ -7,7 +10,10 @@ namespace MSG.SistemaVentas.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
             // Add services to the container.
+
+            builder.Services.AddDbContext<VentasDbContext>(options => options.UseNpgsql(connectionString));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
