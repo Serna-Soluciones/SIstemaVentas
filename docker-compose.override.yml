@@ -1,0 +1,17 @@
+services:
+  api:
+    container_name: api_service
+    build:
+      args:
+        BUILD_CONFIGURATION: Debug
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+    - "8080:8080"
+    networks:
+      - backend_network
+    depends_on:
+      - postgres
+      - mongo
+    volumes:
+      - .:/src

@@ -1,0 +1,6 @@
+@MSG.SistemaVentas.API_HostAddress = http://localhost:5014
+
+GET {{MSG.SistemaVentas.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

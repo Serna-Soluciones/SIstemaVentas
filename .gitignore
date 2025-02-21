@@ -1,0 +1,16 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/MSG.SistemaVentas/.vs/MSG.SistemaVentas/FileContentIndex
+/MSG.SistemaVentas/.vs/MSG.SistemaVentas/v17
+/MSG.SistemaVentas/MSG.SistemaVentas.API/obj
+/MSG.SistemaVentas/MSG.SistemaVentas.Application/obj
+/MSG.SistemaVentas/MSG.SistemaVentas.Domain/obj
+/MSG.SistemaVentas/MSG.SistemaVentas.Infrastructure/obj
+/MSG.SistemaVentas/.vs/MSG.SistemaVentas/DesignTimeBuild
+/MSG.SistemaVentas/MSG.SistemaVentas.API/bin/Debug/net8.0
+/MSG.SistemaVentas/MSG.SistemaVentas.Application/bin/Debug/net8.0
+/MSG.SistemaVentas/MSG.SistemaVentas.Domain/bin/Debug/net8.0
+/MSG.SistemaVentas/MSG.SistemaVentas.Infrastructure/bin/Debug/net8.0
+/MSG.SistemaVentas/.vs/ProjectEvaluation

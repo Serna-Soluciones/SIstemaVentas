@@ -1,0 +1,35 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - develop # Para 'push' hacia esta rama.
+  pull_request:
+    branches:
+      - develop # Para 'pull request' de otras ramas hacia esta.
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Contenedor Ubuntu.
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 # Asegura se descargue el código en el contenedor.
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x' # Para la versión que se utiliza en el proyecto.
+
+      - name: Restore dependencies  # Restaura las dependencias.
+        run: dotnet restore ./MSG.SistemaVentas/MSG.SistemaVentas.sln
+
+      - name: Build the solution
+        run: dotnet build ./MSG.SistemaVentas/MSG.SistemaVentas.sln --configuration Release
+
+      - name: Run tests
+        run: dotnet test ./MSG.SistemaVentas/MSG.SistemaVentas.sln --configuration Release
+
+      - name: Publish the application # Publica la aplicación
+        run: dotnet publish ./MSG.SistemaVentas/MSG.SistemaVentas.sln --configuration Release --output ./out
