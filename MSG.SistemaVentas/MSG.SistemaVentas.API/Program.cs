@@ -13,6 +13,11 @@ namespace MSG.SistemaVentas.API
             var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
             // Add services to the container.
 
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
             builder.Services.AddDbContext<VentasDbContext>(options => options.UseNpgsql(connectionString));
 
             builder.Services.AddControllers();
