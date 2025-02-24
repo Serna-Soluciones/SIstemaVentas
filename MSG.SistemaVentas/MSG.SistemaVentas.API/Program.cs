@@ -1,4 +1,4 @@
-
+using Serilog;
 using Microsoft.EntityFrameworkCore;
 using MSG.SistemaVentas.Infrastructure.Persistence;
 
@@ -9,6 +9,15 @@ namespace MSG.SistemaVentas.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.File("Logs/SistemaVentas.log", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
             // Add services to the container.
