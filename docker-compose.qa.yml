@@ -1,0 +1,75 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db_qa
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: ventas_db_qa
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo_qa
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - backend_network
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_admin_qa
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin123
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin123@mongo_qa:27017/
+    ports:
+      - "8082:8081"
+    depends_on:
+      - mongo
+    networks:
+      - backend_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_qa
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5051:80"
+    depends_on:
+      - postgres
+    networks:
+      - backend_network
+
+  api:
+    container_name: api_service_qa
+    build:
+      context: .\MSG.SistemaVentas\MSG.SistemaVentas.API
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+    ports:
+      - "31067:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=QA
+    networks:
+      - backend_network
+    depends_on:
+      - postgres
+      - mongo
