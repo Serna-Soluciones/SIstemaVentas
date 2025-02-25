@@ -1,6 +1,7 @@
 using Serilog;
 using Microsoft.EntityFrameworkCore;
 using MSG.SistemaVentas.Infrastructure.Persistence;
+using MSG.SistemaVentas.API.Middlewares;
 
 namespace MSG.SistemaVentas.API
 {
@@ -57,10 +58,11 @@ namespace MSG.SistemaVentas.API
                 });
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
