@@ -34,8 +34,9 @@ namespace MSG.SistemaVentas.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Producto producto)
         {
-             var result = _productoService.CreateAsync(producto);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id });
+            var result = await _productoService.CreateAsync(producto);
+            var nuevoProducto = await _productoService.GetByIdAsync(result.Id);
+            return nuevoProducto != null ? Ok(nuevoProducto) : NoContent();
         }
 
         [HttpPut("{productoId:int}")]
@@ -45,7 +46,8 @@ namespace MSG.SistemaVentas.API.Controllers
             {
                 var result = await _productoService.UpdateAsync(producto);
                 return result ? Ok(result) : BadRequest();
-            } else
+            }
+            else
             {
                 return BadRequest();
             }
