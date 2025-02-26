@@ -29,5 +29,13 @@ namespace MSG.SistemaVentas.API.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("ExceptionTest")]
+        public IActionResult TestException()
+        {
+            throw new Exception(
+                message: "Excepción de prueba",
+                innerException: new Exception("Excepción interna de prueba"));
+        }
     }
 }

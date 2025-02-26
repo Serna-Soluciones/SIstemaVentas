@@ -14,3 +14,5 @@
 /MSG.SistemaVentas/MSG.SistemaVentas.Domain/bin/Debug/net8.0
 /MSG.SistemaVentas/MSG.SistemaVentas.Infrastructure/bin/Debug/net8.0
 /MSG.SistemaVentas/.vs/ProjectEvaluation
+/MSG.SistemaVentas/MSG.SistemaVentas.API/Logs
+/MSG.SistemaVentas/MSG.SistemaVentas.API/MSG.SistemaVentas.API.csproj.user

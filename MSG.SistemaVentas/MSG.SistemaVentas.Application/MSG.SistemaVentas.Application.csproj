@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Catalogos\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MSG.SistemaVentas.Domain\MSG.SistemaVentas.Domain.csproj" />
+    <ProjectReference Include="..\MSG.SistemaVentas.Infrastructure\MSG.SistemaVentas.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
