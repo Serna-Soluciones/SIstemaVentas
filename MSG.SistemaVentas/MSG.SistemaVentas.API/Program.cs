@@ -2,6 +2,11 @@ using Serilog;
 using Microsoft.EntityFrameworkCore;
 using MSG.SistemaVentas.Infrastructure.Persistence;
 using MSG.SistemaVentas.API.Middlewares;
+using MSG.SistemaVentas.Application.Interfaces;
+using MSG.SistemaVentas.Application.Services;
+using MSG.SistemaVentas.Domain.Interfaces;
+using MSG.SistemaVentas.Domain.Entities;
+using MSG.SistemaVentas.Infrastructure.Persistence.Repositories;
 
 namespace MSG.SistemaVentas.API
 {
@@ -20,15 +25,21 @@ namespace MSG.SistemaVentas.API
 
             builder.Host.UseSerilog();
 
-            var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
-            // Add services to the container.
-
             builder.Configuration
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
+            var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
+            // Add services to the container.
+
+            Console.WriteLine($"Connection string: {connectionString}");
+
             builder.Services.AddDbContext<VentasDbContext>(options => options.UseNpgsql(connectionString));
+
+            builder.Services
+                .AddScoped<IProductoService, ProductoService>()
+                .AddScoped<IRepository<Producto>, ProductoRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
