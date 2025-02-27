@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MSG.SistemaVentas.Application\MSG.SistemaVentas.Application.csproj" />
+    <ProjectReference Include="..\MSG.SistemaVentas.Domain\MSG.SistemaVentas.Domain.csproj" />
   </ItemGroup>
 
 </Project>

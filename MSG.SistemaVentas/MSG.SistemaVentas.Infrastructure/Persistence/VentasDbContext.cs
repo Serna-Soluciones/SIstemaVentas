@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MSG.SistemaVentas.Domain.Entities;
 
 namespace MSG.SistemaVentas.Infrastructure.Persistence
