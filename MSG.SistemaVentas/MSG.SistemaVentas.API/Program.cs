@@ -39,7 +39,9 @@ namespace MSG.SistemaVentas.API
 
             builder.Services
                 .AddScoped<IProductoService, ProductoService>()
-                .AddScoped<IRepository<Producto>, ProductoRepository>();
+                .AddScoped<IClienteService, ClienteService>()
+                .AddScoped<IRepository<Producto>, ProductoRepository>()
+                .AddScoped<IRepository<Cliente>, ClienteRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
