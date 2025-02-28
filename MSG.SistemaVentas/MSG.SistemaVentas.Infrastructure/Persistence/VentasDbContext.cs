@@ -10,7 +10,7 @@ namespace MSG.SistemaVentas.Infrastructure.Persistence
         {
             
         }
-
+        public DbSet<User> Users { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Venta> Ventas { get; set; }

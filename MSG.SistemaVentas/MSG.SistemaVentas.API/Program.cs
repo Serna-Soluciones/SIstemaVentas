@@ -2,12 +2,8 @@ using Serilog;
 using Microsoft.EntityFrameworkCore;
 using MSG.SistemaVentas.Infrastructure.Persistence;
 using MSG.SistemaVentas.API.Middlewares;
-using MSG.SistemaVentas.Application.Interfaces;
-using MSG.SistemaVentas.Application.Services;
-using MSG.SistemaVentas.Domain.Interfaces;
-using MSG.SistemaVentas.Domain.Entities;
-using MSG.SistemaVentas.Infrastructure.Persistence.Repositories;
 using MSG.SistemaVentas.Application;
+using MSG.SistemaVentas.API.Extensions;
 
 namespace MSG.SistemaVentas.API
 {
@@ -37,6 +33,8 @@ namespace MSG.SistemaVentas.API
             Console.WriteLine($"Connection string: {connectionString}");
 
             builder.Services.AddDbContext<VentasDbContext>(options => options.UseNpgsql(connectionString));
+
+            builder.Services.AddJwtAuthentication(builder.Configuration);
 
             builder.Services.AddApplicationServices();
 
