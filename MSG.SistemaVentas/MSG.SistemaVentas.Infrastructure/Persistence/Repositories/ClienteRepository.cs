@@ -4,19 +4,19 @@ using MSG.SistemaVentas.Domain.Interfaces;
 
 namespace MSG.SistemaVentas.Infrastructure.Persistence.Repositories
 {
-    public class ProductoRepository : IRepository<Producto>
+    public class ClienteRepository : IRepository<Cliente>
     {
         private readonly VentasDbContext _context;
 
-        public ProductoRepository( VentasDbContext context)
+        public ClienteRepository( VentasDbContext context)
         {
                 _context = context;
         }
-        public async Task<Producto> AddAsync(Producto entity)
+        public async Task<Cliente> AddAsync(Cliente entity)
         {
             try
             {
-                _context.Productos.Add(entity);
+                _context.Clientes.Add(entity);
                 await _context.SaveChangesAsync();
                 return entity;
             }
@@ -30,10 +30,10 @@ namespace MSG.SistemaVentas.Infrastructure.Persistence.Repositories
         {
             try
             {
-                var producto = await _context.Productos.FindAsync(id);
-                if (producto != null)
+                var cliente = await _context.Clientes.FindAsync(id);
+                if (cliente != null)
                 {
-                    _context.Productos.Remove(producto);
+                    _context.Clientes.Remove(cliente);
                     var result = await _context.SaveChangesAsync() > 0;
                     return result;
                 }
@@ -45,15 +45,15 @@ namespace MSG.SistemaVentas.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async Task<IEnumerable<Producto>> GetAllAsync() => await _context.Productos.ToListAsync();
+        public async Task<IEnumerable<Cliente>> GetAllAsync() => await _context.Clientes.ToListAsync();
 
-        public async Task<Producto?> GetByIdAsync(int id) => await _context.Productos.FindAsync(id);
+        public async Task<Cliente?> GetByIdAsync(int id) => await _context.Clientes.FindAsync(id);
 
-        public async Task<bool> UpdateAsync(Producto entity)
+        public async Task<bool> UpdateAsync(Cliente entity)
         {
             try
             {
-                _context.Productos.Update(entity);
+                _context.Clientes.Update(entity);
                 var result = await _context.SaveChangesAsync() > 0;
                 return result;
             }
