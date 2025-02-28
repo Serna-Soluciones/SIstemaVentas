@@ -7,6 +7,7 @@ using MSG.SistemaVentas.Application.Services;
 using MSG.SistemaVentas.Domain.Interfaces;
 using MSG.SistemaVentas.Domain.Entities;
 using MSG.SistemaVentas.Infrastructure.Persistence.Repositories;
+using MSG.SistemaVentas.Application;
 
 namespace MSG.SistemaVentas.API
 {
@@ -37,11 +38,7 @@ namespace MSG.SistemaVentas.API
 
             builder.Services.AddDbContext<VentasDbContext>(options => options.UseNpgsql(connectionString));
 
-            builder.Services
-                .AddScoped<IProductoService, ProductoService>()
-                .AddScoped<IRepository<Producto>, ProductoRepository>()
-                .AddScoped<IVentaService, VentaService>()
-                .AddScoped<IRepository<Venta>, VentaRepository>();
+            builder.Services.AddApplicationServices();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
